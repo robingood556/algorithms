@@ -26,6 +26,18 @@ class First_task():
     def sin_number(self, x):
         return x * np.sin(1/x)
 
+    def choose_task(self, task):
+        if task == "degree":
+            iteraction_func = self.degree_number
+        elif task == "sin":
+            iteraction_func = self.sin_number
+        elif task == "module":
+            iteraction_func = self.module_number
+        else:
+            return False
+
+        return iteraction_func
+
 
     def check_unim(self, arr, func):
         first_item = arr[0]
@@ -49,23 +61,15 @@ class First_task():
         last_item = arr[-1]
         checker = self.check_unim(arr, func)
         step = self.accuracy()
+        function = self.choose_task(task)
         iteractions = 0
-
-        if task == "degree":
-            iteraction_func = self.degree_number
-        elif task == "sin":
-            iteraction_func = self.sin_number
-        elif task == "module":
-            iteraction_func = self.module_number
-        else:
-            return False
 
         if checker == True:
             for num_checker in np.arange(first_item, last_item, step):
                 iteractions += 1
                 res_x = arr[0] + num_checker * step
 
-                res_y = iteraction_func(res_x)
+                res_y = function(res_x)
 
                 left.append(res_x)
                 right.append(res_y)
@@ -81,15 +85,7 @@ class First_task():
         checker = self.check_unim(arr, func)
         midpoint = eps / 2
         iteractions = 0
-
-        if task == "degree":
-            iteraction_func = self.degree_number
-        elif task == "sin":
-            iteraction_func = self.sin_number
-        elif task == "module":
-            iteraction_func = self.module_number
-        else:
-            return False
+        function = self.choose_task(task)
 
         if checker == True:
 
@@ -99,13 +95,13 @@ class First_task():
                 x1 = (first_item + last_item - midpoint) / 2
                 x2 = (first_item + last_item + midpoint) / 2
 
-                if iteraction_func(x1) <= iteraction_func(x2):
+                if function(x1) <= function(x2):
                     last_item = x2
                 else:
                     first_item = x1
 
             x_mid = (first_item + last_item) / 2
-            func_x = iteraction_func(x_mid)
+            func_x = function(x_mid)
 
             print(x_mid, func_x, iteractions)
 
@@ -119,15 +115,7 @@ class First_task():
         first_item = arr[0]
         last_item = arr[-1]
         checker = self.check_unim(arr, func)
-
-        if task == "degree":
-            iteraction_func = self.degree_number
-        elif task == "sin":
-            iteraction_func = self.sin_number
-        elif task == "module":
-            iteraction_func = self.module_number
-        else:
-            return False
+        function = self.choose_task(task)
 
         if checker == True:
 
@@ -138,13 +126,13 @@ class First_task():
                 x1 = first_item + 0.38*(last_item - first_item)
                 x2 = first_item + 0.61*(last_item - first_item)
 
-                if iteraction_func(x1) <= iteraction_func(x2):
+                if function(x1) <= function(x2):
                     last_item = x2
                 else:
                     first_item = x1
 
             x_mid = (first_item + last_item) / 2
-            func_x = iteraction_func(x_mid)
+            func_x = function(x_mid)
 
             print(x_mid, func_x, iteractions)
 
