@@ -35,10 +35,10 @@ class First_task():
         second_derivative = first_derivative.diff(x)
         step = self.accuracy()
 
-        for i in np.arange(first_item, last_item, step):
+        for start_range in np.arange(first_item, last_item, step):
             res = []
-            res.append(lambdify(x, first_derivative)(i))
-            if all(j-i > 0 for i, j in zip(res, res[1:])) == True or lambdify(x, second_derivative)(i) >= 0:
+            res.append(lambdify(x, first_derivative)(start_range))
+            if all(j-i > 0 for i, j in zip(res, res[1:])) == True or lambdify(x, second_derivative)(start_range) >= 0:
                 return True
             else:
                 return False
@@ -61,9 +61,9 @@ class First_task():
             return False
 
         if checker == True:
-            for i in np.arange(first_item, last_item, step):
+            for num_checker in np.arange(first_item, last_item, step):
                 iteractions += 1
-                res_x = arr[0] + i * step
+                res_x = arr[0] + num_checker * step
 
                 res_y = iteraction_func(res_x)
 
