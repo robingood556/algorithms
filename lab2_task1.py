@@ -143,6 +143,6 @@ class First_task():
 #ex
 q = First_task()
 x = Symbol('x')
-res_num = q.result_num([0, 1], x**3, "degree")
-res_dio = q.result_dioch([0, 1], x**3, "degree")
-res_gold = q.result_golden([0, 1], x**3, "degree")
+res_num = q.result_num([0.01, 1], x*sin(1/x), "sin")
+res_dio = q.result_dioch([0.01, 1], x*sin(1/x), "sin")
+res_gold = q.result_golden([0.01, 1], x*sin(1/x), "sin")
