@@ -2,4 +2,7 @@
 
 ITMO task 2 - Algorithms for unconstrained nonlinear optimization. Direct methods Goal
 
-Three direct methods - exhaustive search, dichotomy and golden section search
+The use of direct methods (one-dimensional methods of exhaustive search, 
+dichotomy, golden section search; multidimensional methods of exhaustive search, 
+Gauss (coordinate descent), Nelder-Mead) in the tasks of unconstrained nonlinear
+optimization
