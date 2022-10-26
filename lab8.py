@@ -1,7 +1,15 @@
 import itertools
+
+import matplotlib.pyplot as plt
 import numpy as np
 from numpy import random
 from scipy.optimize import linear_sum_assignment
+import time
+import pandas as pd
+import matplotlib.pyplot as mp
+from typing import NamedTuple
+from collections import namedtuple
+import time
 
 
 class TaskAssignment:
@@ -76,8 +84,28 @@ class TaskAssignment:
         return min_cost, best_solution
 
 rd = random.RandomState(10000)
-task_matrix = rd.randint(0, 100, size=(10, 10))
-ass_by_Hun = TaskAssignment(task_matrix)
-print('Matrix = ', '\n', task_matrix)
-print('Summ of best solve = ', ass_by_Hun.min_cost)
-print('best solution = ', ass_by_Hun.best_solution)
+time_result = []
+number_matrix = []
+for x in range(1,500):
+        task_matrix = rd.randint(0, 100, size=(x, x))
+        print(task_matrix)
+        ass_by_Hun = TaskAssignment(task_matrix)
+        start_time = time.time_ns()
+        print(start_time)
+        ass_by_Hun.best_solution
+        finish_time = time.time_ns()
+        res = finish_time - start_time
+        number_matrix.append(x)
+        time_result.append(res)
+
+model = np.poly1d(np.polyfit(number_matrix,time_result, 3))
+number_matrix = np.array(number_matrix)
+coeffs = np.polyfit(number_matrix,time_result, 3)
+fit = np.poly1d(coeffs)
+
+fit_curve = coeffs[0] * number_matrix**3 + coeffs[1] * number_matrix**2 + coeffs[2] * number_matrix + coeffs[3]
+plt.plot(number_matrix, time_result)
+plt.plot(fit_curve)
+plt.xlabel("Matrix x*x")
+plt.ylabel("Time in seconds")
+plt.show()
